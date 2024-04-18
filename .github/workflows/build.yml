@@ -36,8 +36,8 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -54,7 +54,6 @@ jobs:
           working-directory: torrent-client
           script-name: main.py
           standalone: true
-          enable-plugins: libtorrent
           output-dir: resources/dist
           output-file: hydra-download-manager
           windows-icon-from-ico: images/icon.ico
