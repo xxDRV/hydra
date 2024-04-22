@@ -7,6 +7,7 @@ import {
   getNewRepacksFromXatab,
   // getNewRepacksFromOnlineFix,
   readPipe,
+  steamGetNewGames,
   startProcessWatcher,
   writePipe,
 } from "./services";
@@ -126,4 +127,7 @@ const loadState = async () => {
   import("./events");
 };
 
-loadState().then(() => checkForNewRepacks());
+loadState().then(() => {
+  steamGetNewGames();
+  checkForNewRepacks();
+});
