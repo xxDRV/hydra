@@ -7,6 +7,7 @@ import {
   UserPreferences,
   MigrationScript,
   SteamGame,
+  SteamGameAchievements,
 } from "@main/entity";
 
 export const gameRepository = dataSource.getRepository(Game);
@@ -25,3 +26,7 @@ export const migrationScriptRepository =
   dataSource.getRepository(MigrationScript);
 
 export const steamGameRepository = dataSource.getRepository(SteamGame);
+
+export const steamGameAchievementsRepository = dataSource.getRepository(
+  SteamGameAchievements
+);

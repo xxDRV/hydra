@@ -4,6 +4,10 @@ import { IsNull, Not } from "typeorm";
 import { gameRepository } from "@main/repository";
 import { getProcesses } from "@main/helpers";
 import { WindowManager } from "./window-manager";
+import {
+  startGameAchievementObserver,
+  stopGameAchievementObserver,
+} from "@main/events/achievements/game-achievements-observer";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -63,11 +67,15 @@ export const startProcessWatcher = async () => {
         }
 
         gamesPlaytime.set(game.id, performance.now());
+
+        startGameAchievementObserver(game.id);
       } else if (gamesPlaytime.has(game.id)) {
         gamesPlaytime.delete(game.id);
         if (WindowManager.mainWindow) {
           WindowManager.mainWindow.webContents.send("on-game-close", game.id);
         }
+
+        stopGameAchievementObserver(game.id);
       }
     }
 

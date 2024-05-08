@@ -7,6 +7,7 @@ import {
   UserPreferences,
   MigrationScript,
   SteamGame,
+  SteamGameAchievements,
 } from "@main/entity";
 import type { SqliteConnectionOptions } from "typeorm/driver/sqlite/SqliteConnectionOptions";
 
@@ -24,6 +25,7 @@ export const createDataSource = (options: Partial<SqliteConnectionOptions>) =>
       GameShopCache,
       MigrationScript,
       SteamGame,
+      SteamGameAchievements,
     ],
     ...options,
   });

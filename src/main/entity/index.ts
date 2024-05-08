@@ -5,3 +5,4 @@ export * from "./user-preferences.entity";
 export * from "./game-shop-cache.entity";
 export * from "./migration-script.entity";
 export * from "./steam-game.entity";
+export * from "./steam-game-achievements.entity";
