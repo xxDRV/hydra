@@ -27,6 +27,6 @@ export const migrationScriptRepository =
 
 export const steamGameRepository = dataSource.getRepository(SteamGame);
 
-export const steamGameAchievementsRepository = dataSource.getRepository(
+export const steamGameAchievementRepository = dataSource.getRepository(
   SteamGameAchievements
 );

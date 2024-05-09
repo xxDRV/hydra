@@ -1,5 +1,5 @@
 import {
-  steamGameAchievementsRepository,
+  steamGameAchievementRepository,
   steamGameRepository,
 } from "@main/repository";
 import { steamGlobalAchievementPercentages } from "./steam-global-achievement-percentages";
@@ -16,16 +16,16 @@ export const steamGetAchivement = async (
 
   if (!steamGame) return;
 
-  const gameAchivement = await steamGameAchievementsRepository.findOne({
+  const steamGameAchivement = await steamGameAchievementRepository.findOne({
     where: { steamGame },
   });
 
-  if (!gameAchivement) {
+  if (!steamGameAchivement) {
     const achievementPercentage =
       await steamGlobalAchievementPercentages(steamGameId);
 
     if (!achievementPercentage) {
-      await steamGameAchievementsRepository.save({
+      await steamGameAchievementRepository.save({
         steamGame,
         achievements: "[]",
       });
@@ -43,13 +43,13 @@ export const steamGetAchivement = async (
 
     if (!achievements) return;
 
-    await steamGameAchievementsRepository.save({
+    await steamGameAchievementRepository.save({
       steamGame,
       achievements: JSON.stringify(achievements),
     });
 
     return achievements;
   } else {
-    return JSON.parse(gameAchivement.achievements);
+    return JSON.parse(steamGameAchivement.achievements);
   }
 };

@@ -2,7 +2,7 @@ import { watch } from "node:fs/promises";
 import { getGameAchievementsToWatch } from "./services/get-game-achievements-to-watch";
 import { checkUnlockedAchievements } from "./util/check-unlocked-achievements";
 import { parseAchievementFile } from "./util/parseAchievementFile";
-import { steamGameAchievementsRepository } from "@main/repository";
+import { steamGameAchievementRepository } from "@main/repository";
 
 type GameAchievementObserver = {
   [id: number]: AbortController | null;
@@ -61,7 +61,7 @@ export const startGameAchievementObserver = async (gameId: number) => {
             if (checked.new) {
               console.log(checked.new);
 
-              steamGameAchievementsRepository.update(
+              steamGameAchievementRepository.update(
                 {
                   steamGame: { id: steamId },
                 },

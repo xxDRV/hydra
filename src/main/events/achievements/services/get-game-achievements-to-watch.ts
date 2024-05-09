@@ -1,6 +1,6 @@
 import {
   gameRepository,
-  steamGameAchievementsRepository,
+  steamGameAchievementRepository,
 } from "@main/repository";
 import { steamGetAchivement } from "../steam/steam-get-achivement";
 import { steamFindGameAchievementFiles } from "../steam/steam-find-game-achivement-files";
@@ -50,7 +50,7 @@ export const getGameAchievementsToWatch = async (
     }
 
     if (checkedAchievements.new.length) {
-      await steamGameAchievementsRepository.update(
+      await steamGameAchievementRepository.update(
         {
           steamGame: { id: steamId },
         },

@@ -1,5 +1,5 @@
 import {
-  steamGameAchievementsRepository,
+  steamGameAchievementRepository,
   steamGameRepository,
 } from "@main/repository";
 import { steamFindGameAchievementFiles } from "../steam/steam-find-game-achivement-files";
@@ -10,7 +10,7 @@ import { parseAchievementFile } from "../util/parseAchievementFile";
 import { checkUnlockedAchievements } from "../util/check-unlocked-achievements";
 import { CheckedAchievements } from "../types";
 
-export const saveAllLocalAchivements = async () => {
+export const saveAllLocalSteamAchivements = async () => {
   const gameAchievementFiles = steamFindGameAchievementFiles();
 
   for (const key of Object.keys(gameAchievementFiles)) {
@@ -24,7 +24,7 @@ export const saveAllLocalAchivements = async () => {
 
     if (!steamGame) continue;
 
-    const hasOnDb = await steamGameAchievementsRepository.existsBy({
+    const hasOnDb = await steamGameAchievementRepository.existsBy({
       steamGame,
     });
 
@@ -33,7 +33,7 @@ export const saveAllLocalAchivements = async () => {
     const achievementPercentage = await steamGlobalAchievementPercentages(id);
 
     if (!achievementPercentage) {
-      await steamGameAchievementsRepository.save({
+      await steamGameAchievementRepository.save({
         steamGame,
         achievements: "[]",
       });
@@ -70,7 +70,7 @@ export const saveAllLocalAchivements = async () => {
       );
     }
 
-    await steamGameAchievementsRepository.save({
+    await steamGameAchievementRepository.save({
       steamGame,
       achievements: JSON.stringify(checkedAchievements.all),
     });
