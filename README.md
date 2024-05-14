@@ -1,3 +1,9 @@
+  <p align="center">
+    <strong>⚠️WARNING: Hydra's code doesn't contain any bit of copyrighted content, as well as links to such materials⚠️</strong>
+    All scraping is done on end-user machine and we don't take responsibility for user actions.
+    Hydra is a non-profit project created for research purposes.
+  </p>
+
 <br>
 
 <div align="center">
